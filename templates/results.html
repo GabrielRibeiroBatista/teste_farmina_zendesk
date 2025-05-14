@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres usado no documento -->
+    <title>Resultados da Busca</title> <!-- Título da página exibido no navegador -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Importa o arquivo CSS para estilização -->
+</head>
+<body>
+    <h1>Produtos Encontrados</h1> <!-- Título principal da página -->
+
+    {% if products %} <!-- Verifica se há produtos disponíveis -->
+        <ul> <!-- Lista não ordenada para exibir os produtos -->
+        {% for key, product in products.items() %} <!-- Itera sobre os produtos encontrados -->
+            <li> <!-- Cada produto será representado como um item na lista -->
+                <h2>{{ product.name }}</h2> <!-- Nome do produto -->
+                <p><strong>Descrição:</strong> {{ product.description }}</p> <!-- Descrição do produto -->
+                <p><strong>Ingredientes:</strong> {{ product.ingredients }}</p> <!-- Lista de ingredientes -->
+                <p><strong>Tipo:</strong> {{ product.productType }}</p> <!-- Tipo do produto (ex: seco, úmido) -->
+                <p><strong>Fase da Vida:</strong> {{ product.lifeStages[2] }}</p> <!-- Estágio da vida do pet para o qual o produto é recomendado -->
+                <p><strong>Link:</strong> <a href="{{ product.url }}" target="_blank">Ver Produto</a></p> <!-- Link para mais detalhes do produto -->
+                <img src="{{ product.img_thumbnail }}" alt="{{ product.name }}"> <!-- Imagem do produto -->
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %} <!-- Caso não haja produtos disponíveis -->
+        <p>Nenhum produto encontrado com os filtros selecionados.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Voltar</a> <!-- Link para retornar à página inicial -->
+</body>
+</html>

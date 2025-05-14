@@ -1,0 +1,112 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    padding: 20px;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2b2b2b;
+}
+
+/* Estilização do formulário */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+}
+
+select, input[type="checkbox"], button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Lista de resultados */
+ul {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    list-style-type: none;
+}
+
+li {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+li img {
+    max-width: 150px;
+    display: block;
+    margin-top: 10px;
+}
+
+li h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+li p {
+    margin-bottom: 5px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Link de voltar */
+a[href="/"] {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}

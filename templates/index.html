@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br"> <!-- Define a linguagem do documento como português do Brasil -->
+<head>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres para suportar acentuação -->
+    <title>Simulador de Produtos para Pets</title> <!-- Título da página exibido na aba do navegador -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Importa o arquivo CSS para estilização -->
+</head>
+<body>
+    <h1>Simulador de Produtos para Pets</h1> <!-- Título principal da página -->
+
+    <form method="POST"> <!-- Formulário para envio de dados via método POST -->
+        <!-- Campo de seleção para escolher o tipo de alimento -->
+        <label for="productType">Tipo de Alimento:</label>
+        <select name="productType" id="productType" required>
+            <option value="">Selecione uma opção</option>
+            <option value="dry">Seco</option>
+            <option value="wet">Molhado</option>
+        </select><br><br>
+
+        <!-- Campo de seleção para escolher o tipo de pet -->
+        <label for="species">Tipo de Pet:</label>
+        <select name="species" id="species" required>
+            <option value="">Selecione uma opção</option>
+            <option value="dog">Cão</option>
+            <option value="cat">Gato</option>
+        </select><br><br>
+
+        <!-- Campo de seleção para indicar se o pet está em gestação -->
+        <label for="gestation">Gestação:</label>
+        <select name="gestation" id="gestation" required>
+            <option value="">Selecione uma opção</option>
+            <option value="no">Não</option>
+            <option value="yes">Sim</option>
+        </select><br><br>
+
+        <!-- Campo de seleção para indicar se o pet está em lactação -->
+        <label for="lactation">Lactação:</label>
+        <select name="lactation" id="lactation" required>
+            <option value="">Selecione uma opção</option>
+            <option value="no">Não</option>
+            <option value="yes">Sim</option>
+        </select><br><br>
+
+        <!-- Campo de seleção para escolher a fase da vida do pet -->
+        <label for="lifeStage">Fase da Vida:</label>
+        <select name="lifeStage" id="lifeStage" required>
+            <option value="">Selecione uma opção</option>
+            <option value="puppy">Filhote</option>
+            <option value="adult">Adulto</option>
+            <option value="senior">Sênior</option>
+        </select><br><br>
+
+        <!-- Campo de seleção para cuidados especiais, preenchido dinamicamente via API -->
+        <label>Cuidados Especiais:</label><br>
+        <select name="specialcares" required>
+            <option value="">Selecione uma opção</option>
+            {% for care in special_cares %} <!-- Itera sobre os dados da API para popular as opções -->
+                <option value="{{ care.specialcare_id }}">{{ care.specialcare_name }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Botão para enviar o formulário -->
+        <button type="submit">Buscar Produtos</button>
+    </form>
+</body>
+</html>
