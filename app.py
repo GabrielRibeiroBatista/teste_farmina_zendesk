@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import requests
 from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
+import json
 import os
 
 app = Flask(__name__)
@@ -45,13 +46,29 @@ def get_products(filters):
         "specialcares": filters['specialcares'],
         "appsAndEshop": True
     }
-    response = requests.post(url, json=payload, auth=HTTPBasicAuth(API_USER, API_PASS))
-    if response.status_code == 200:
+
+    try:
+        response = requests.post(url, json=payload, auth=HTTPBasicAuth(API_USER, API_PASS))
+        response.raise_for_status()
+    except requests.RequestException as e:
+        print(f"[ERRO] Falha na requisição para a API: {e}")
+        return []
+
+    try:
         data = response.json()
-        products = data['result']['products']
-        return products
+    except ValueError:
+        print("[ERRO] Falha ao interpretar o JSON da resposta.")
+        print("Resposta bruta:", response.text)
+        return []
+
+    # Verifica se 'result' e 'products' existem no JSON
+    if 'result' in data and 'products' in data['result']:
+        return data['result']['products']
     else:
-        return {}
+        print("[ERRO] Estrutura inesperada na resposta da API.")
+        print("JSON recebido:", json.dumps(data, indent=2))
+        return []
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
